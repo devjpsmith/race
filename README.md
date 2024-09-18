@@ -19,7 +19,7 @@ My preferred method to use this script is adding a symlink to /usr/local/bin
 Make the script executable, then create the link
 ```
 $ chmod +x race.sh
-$ ln ./race.sh /usr/local/bin/race
+$ ln -s ./race.sh /usr/local/bin/race
 ```
 
 From there, run the help option to see how it's used
