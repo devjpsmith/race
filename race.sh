@@ -12,7 +12,8 @@ mode=$PACE_MODE
 quiet=0
 
 usage() {
-  printf "  race ${YELLOW}[OPTIONS]${NC} distance [times]\n\n"
+  printf "  race ${YELLOW}[OPTIONS]${NC} distance [times]\n"
+  printf "\n"
   printf "  ${CYAN}Arguments${NC}\n"
   printf "\tdistance\trequired for pace and time modes\n"
   printf "\ttimes\t\ttime or pace, provided in HH:MM:SS format. HH is optional\n"
@@ -24,6 +25,7 @@ usage() {
   printf "\t-c takes two times and adds them together\n"
   printf "\t-s no color output\n"
   printf "\t-q quiet output: only output the resulting calculation\n"
+  printf "\n"
   printf "  ${CYAN}Examples${NC}\n"
   printf "    race 10 40:00\t# will calculate the average pace to run 10km in 40 minutes\n"
   printf "    >>> Average Pace: ${GREEN}4:00${NC}\n"
@@ -112,6 +114,10 @@ shift $((OPTIND - 1))
 if [ $mode != $CALC_MODE ]; then
   distance=$1
   shift 1
+fi
+if [ -z "$1" ]; then
+  usage
+  exit 1
 fi
 secs=$(getSecondsFromTime $1)
 
